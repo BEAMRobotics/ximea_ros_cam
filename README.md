@@ -32,7 +32,7 @@ rm -rf tmp
 sudo gpasswd -a $USER plugdev
 ```
 
-## Setup the USB FS Memory Max Allocation to Infinite 
+## Setup the USB FS Memory Max Allocation to Infinite
 
 This is done to make sure that the USB FS buffering size is sufficient for high bandwidth streams through USB 3.0
 
@@ -75,6 +75,14 @@ Examine `launch/example_cam.launch` and `config/example_cam_config.yaml` to get 
 
 To view the stream: `rosrun rqt_image_view rqt_image_view`
 
+# Extra:
+
+You may need to install camera_info_manager
+
+`sudo apt-get install ros-kinetic-camera-info-manager`
+
+Make sure you change the serial number in the launch file to the one of the camera you are using, and you might need to change the image directory in the yaml file to /home/user/dev (create if non-existent)
+
 ## Launching Multiple Cameras:
 
 Each camera can be ran with their own individual launch files (the parameters will be defined in their own individual name spaces, which makes each camera "unique").
@@ -103,7 +111,7 @@ Copy the `example_cam.launch` and input another serial number to `serial_no` of 
 
 `image_directory` - Directory used by the flag `save_disk` and `calib_mode` (**Note: Must be a valid directory path with an ABSOLUTE path, otherwise the camera fails to launch or will not create the directory properly. **)
 
-`save_disk` - Save images to disk, under the directory `<image_directory>/stream` 
+`save_disk` - Save images to disk, under the directory `<image_directory>/stream`
 
 `calib_mode` - Saves images everytime a trigger is pressed, under the director `<image_directory>/calib`
 
@@ -119,7 +127,7 @@ See [compressed_image_transport](http://wiki.ros.org/compressed_image_transport)
 
 ### Colouring
 
-`format` - Image format: 
+`format` - Image format:
 ```
 XI_MONO8 - Grayscale 8 bit
 XI_MONO16 - Grayscale 16 bit
