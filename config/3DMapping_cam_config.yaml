@@ -3,10 +3,10 @@
 ####################
 
 # directory to save images (make sure that directory exists and that it is an absolute path).
-image_directory: "/home/dev/"  # must be absolute path, not relative path (i.e. '~')
+image_directory: "/home/nick/dev/"  # must be absolute path, not relative path (i.e. '~')
 
 # save images to the disk
-save_disk: false 
+save_disk: false
 
 # save images on trigger (calibration only)
 calib_mode: false
@@ -25,7 +25,7 @@ format: "XI_RGB24"
 
 # triggering (0 - none, 1 - software trigger (NOT IMPLMENTED YET),
 # 2 - hardware trigger)
-cam_trigger_mode: 2
+cam_trigger_mode: 0
 hw_trigger_edge: 0            # if hw trigger, 0/1 = rising/falling edge trigger
 
 # for camera frame rate
@@ -35,7 +35,7 @@ frame_rate_set: 10            # for trigger mode, fps limiter (0 for none)
 img_capture_timeout: 1000     # timeout in milliseconds for xiGetImage()
 
 # exposure settings
-auto_exposure: false          # auto exposure on or off
+auto_exposure: true          # auto exposure on or off
 exposure_time: 1000           # manual exposure time in microseconds
 manual_gain: 9                # manual exposure gain
 auto_exposure_priority: 0.8   # auto exposure to gain ratio (1 = use only exposure)
