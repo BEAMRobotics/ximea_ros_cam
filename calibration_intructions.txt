@@ -1,0 +1,53 @@
+ROS:
+1. Launch the ximea camera to start publishing images.
+roslaunch ximea_ros_cam 3DMapping_cam.launch
+
+2. Obtain the software package for calibration.
+sudo apt-get install ros-kinetic-camera-calibration
+
+3. Follow the instructions on how to calibrate.
+http://wiki.ros.org/camera_calibration
+
+MATLAB:
+Intrinsic Camera Calibration Steps
+(Doc Work in Progress)
+
+Note:
+If we alter the camera we will have to calibrate it again.
+Don’t touch or alter the camera after it is calibrated.
+
+Four things to know :
+Size of the square (108 mm)
+No. of internal corners over the width
+No. of internal corners over the height
+in matlab execute `format longG` for maximum precision
+Data Collection:
+Try to get 80 to 100 images for each camera with diff skews and rotations. There will be scenarios when the checkerboard gets skewed or distorted.
+Don’t get images that are too close to the camera or too far away.
+
+Matlab Steps:
+Start Matlab and go to apps. -> Camera Calibrator (for intrinsics)
+We use a pinhole camera model with radial and tangential distortion.
+Add Images -> fromfile-> Select all images for the camera.
+Size of the checkerboard square -> 108 mm
+Distortion coefficients are generally 5 – 3 radial and 2 tangential.
+There is a skew parameter – But we don’t select it
+Select these options to increase the number of parameters used to characterize distortion
+Radiation Distortion:
+✓  3 Coefficients
+Compute
+✓ Skew
+✓ Tangential Distortion
+Hit Calibrate
+Look at Overall Mean error- after calibration – If it less than 0.2 it is good.
+Select the images that are too close or too far, remove and recalibrate. (Or select the bar in the graph and slide it down to select the outliers)
+Export Camera parameters -> Export estimation errors to be checked (for future reference)
+It is good to save the session
+Save the camera params and estimation errors
+Matlab transposes the intrinsic matrix – Remember to transpose it back to get the actual intrinsic matrix
+Two things that we need after the calib is done
+Distortions – Radial and tangential
+Intrinsic Matrix
+Create a YAML file (Refer any sample in calibration_verification/data/intrinsics/intrinsic/halfmodel/)
+Distortion vector
+[radial1, radial2, tangential1, tangential2, radial3]
